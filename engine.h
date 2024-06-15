@@ -12,9 +12,17 @@ class Value {
 		Value (float data, const std::vector<Value*>& _prev);
 		
 		Value operator+ (const Value& other);
+		Value operator+(float rhs); // Value + float
 
+		Value operator* (const Value& other);
+		Value operator*(float rhs); // Value * float
 	private:
 		std::function<void()> _backward; 
 		std::vector<Value*> _prev; // vector of the nodes that created this node
 };
 
+// float + Value
+Value operator+(float lhs, const Value& rhs);
+
+// float * Value
+Value operator*(float lhs, const Value& rhs);

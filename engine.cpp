@@ -10,3 +10,21 @@ Value Value::operator+ (const Value& other){
 	Value out = Value(data + other.data, std::vector<Value*> {this, (Value*)&other});
 	return out;
 };
+Value Value::operator+ (float rhs){
+	return *this + Value(rhs);
+};
+Value operator+(float lhs, const Value& rhs) {
+  return Value(lhs) + rhs;
+};
+
+// Multiply
+Value Value::operator* (const Value& other){
+	Value out = Value(data * other.data, std::vector<Value*> {this, (Value*)&other});
+	return out;
+};
+Value Value::operator* (float rhs){
+	return *this * Value(rhs);
+};
+Value operator*(float lhs, const Value& rhs) {
+  return Value(lhs) * rhs;
+};
