@@ -2,6 +2,7 @@
 #include <iostream>
 #include <vector>
 #include <functional>
+#include <set>
 
 // node in the computational graph
 class Value {
@@ -28,11 +29,15 @@ class Value {
 		Value exp(); // e ^ x
 
 		// Activation functions
-		Value tanh(); // tanh
-		Value relu(); // tanh
+		Value tanh(); // Tanh
+		Value relu(); // ReLU
+		Value sigmoid(); // Sigmoid
+
+		void backward(); // run backward propogation from this node
 
 	private:
 		std::vector<Value*> _prev; // vector of the nodes that created this node
+		void toposort(std::vector<Value*> &topo, std::set<Value*> &visited); //topological sort
 };
 
 // Addition
