@@ -1,4 +1,4 @@
-# microgradcpp
+# micrograd-cpp
 
 a micrograd implementation in c++
 

@@ -2,15 +2,16 @@
 #include "engine.h"
 
 int main(){
-	Value A(1.0f);
+	Value A(2.0f);
 	Value B(2.0f);
-	Value C = A * B;
-	C.grad = 1.0f;
+	Value C = B.tanh();
+	Value D = C.pow(A);
+	D.grad = 1.0f;
+	D._backward();
 	C._backward();
-	A._backward();
-	B._backward();
-	std::cout << "A: " << A.grad << std::endl;
-	std::cout << "B: " << B.grad << std::endl;
-	std::cout << "C: " << C.grad << std::endl;
+	std::cout << "A: " << A.data << " -> " << A.grad << std::endl;
+	std::cout << "B: " << B.data << " -> " << B.grad << std::endl;
+	std::cout << "C: " << C.data << " -> " << C.grad << std::endl;
+	std::cout << "D: " << D.data << " -> " << D.grad << std::endl;
 	return 0;
 };
