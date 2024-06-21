@@ -33,3 +33,29 @@ class Neuron : public Module {
 		Value operator() (const std::vector<float>& X);
 		std::vector<Value*> parameters() override; // return all trainable parameters
 };
+
+/* 
+	Layer
+*/
+class Layer : public Module {
+	private:
+		std::vector<Neuron> neurons;
+
+	public:
+		Layer (int nin, int out);
+		
+		Value operator() (const std::vector<float>& X);
+		std::vector<Value*> parameters() override; // return all trainable parameters
+};
+
+/*
+	MLP
+*/
+class MLP : public Module {
+	private:
+		std::vector<Layer> layers;
+
+	public:
+		MLP (int nin, const std::vector<int>& nouts);
+		std::vector<Value*> parameters() override; // return all trainable parameters
+};
