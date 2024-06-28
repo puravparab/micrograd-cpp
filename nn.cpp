@@ -22,10 +22,10 @@ std::vector<Value*> Module::parameters () {
 */
 Neuron::Neuron (int nin) : Neuron(nin, "relu"){};
 Neuron::Neuron (int nin, std::string activation) : activation(activation) {
-	unsigned seed = std::time(0);
+	// Assign random values for weights initially
+	unsigned seed = 12345;
 	std::default_random_engine gen(seed);
 	std::uniform_real_distribution<float> distribution(-1.0, 1.0);
-
 	w.reserve(nin);
 	for (int i = 0; i < nin; i++){
 		w.emplace_back(new Value(distribution(gen)));
@@ -49,6 +49,7 @@ Value Neuron::operator() (const std::vector<Value>& X) const {
 	// activations
 	if (activation == "relu") { return act.relu();} // relu
 	if (activation == "tanh") { return act.tanh();} // tanh
+	if (activation == "sigmoid") { return act.sigmoid();}
 	else {return act;} // linear
 
 }
@@ -63,7 +64,6 @@ std::vector<Value*> Neuron::parameters () {
 /*
 	Layer
 */
-
 Layer::Layer (int nin, int out, const std::string& activation){
 	for (int i = 0; i < out; i++){
 		neurons.emplace_back(nin, activation);
@@ -91,7 +91,6 @@ std::vector<Value*> Layer::parameters() {
 /*
 	MLP
 */
-
 MLP::MLP (int nin, const std::vector<int>& nouts, const std::string& activation){
 	std::vector<int> sz = {nin};
 	sz.insert(sz.end(), nouts.begin(), nouts.end());
@@ -99,14 +98,14 @@ MLP::MLP (int nin, const std::vector<int>& nouts, const std::string& activation)
 	// Create layers with non linear activation function except for the last layer
 	for (size_t i = 0; i < nouts.size(); ++i) {
 		bool nonlin = i != nouts.size() - 1;
-		layers.emplace_back(sz[i], sz[i+1], nonlin? "relu" : "linear");
+		layers.emplace_back(sz[i], sz[i+1], nonlin? activation : "linear");
 	}
 }
 
 std::vector<Value> MLP::operator() (const std::vector<float>& X) {
 	std::vector<Value> input;
 	for (float x : X) {
-		input.emplace_back(x);
+		input.emplace_back(x); // Convert float data to Value instances
 	}
 	for (Layer& layer : layers) {
 		input = layer(input);

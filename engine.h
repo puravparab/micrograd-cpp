@@ -10,8 +10,6 @@ class Value {
 		float data; // data stored in the node
 		float grad; // derivative of the output wrt to the value at this node
 
-		std::function<void()> _backward;
-
 		// Constructor
 		Value (float data);
 		Value (float data, const std::vector<Value*>& _prev);
@@ -36,6 +34,7 @@ class Value {
 		void backward(); // run backward propogation from this node
 
 	private:
+		std::function<void()> _backward;
 		std::vector<Value*> _prev; // vector of the nodes that created this node
 		void toposort(std::vector<Value*> &topo, std::set<Value*> &visited); //topological sort
 };

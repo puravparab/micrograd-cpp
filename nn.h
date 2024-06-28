@@ -27,9 +27,7 @@ class Neuron : public Module {
 		// Constructors
 		Neuron(int nin);
 		Neuron(int nin, std::string activation);
-
 		~Neuron() override; // destructor
-
 		Value operator() (const std::vector<Value>& X) const;
 		std::vector<Value*> parameters() override; // return all trainable parameters
 };
@@ -43,6 +41,7 @@ class Layer : public Module {
 
 	public:
 		Layer (int nin, int out, const std::string& activation);
+		~Layer() override = default;
 		std::vector<Value> operator() (const std::vector<Value>& X);
 		std::vector<Value*> parameters() override; // return all trainable parameters
 };
@@ -56,6 +55,7 @@ class MLP : public Module {
 
 	public:
 		MLP (int nin, const std::vector<int>& nouts, const std::string& activation);
+		~MLP() override = default;
 		std::vector<Value> operator() (const std::vector<float>& X);
 		std::vector<Value*> parameters() override; // return all trainable parameters
 };
