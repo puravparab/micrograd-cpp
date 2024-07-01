@@ -1,2 +1,21 @@
+# Ignore compiled outputs
 */**.out
-micrograd
+
+# Google Test library
+lib/libgtest.a
+
+# Ignore build directory
+build/
+
+# Ignore any temporary files or directories
+tmp/
+*.tmp
+
+# Ignore IDE specific files (example for VSCode).vscode/
+.vscode/
+
+# Ignore any logs
+*.log
+
+# Ignore Google Test build artifacts
+lib/googletest/build/

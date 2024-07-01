@@ -32,7 +32,8 @@ class Value {
 		Value sigmoid(); // Sigmoid
 
 		void backward(); // run backward propogation from this node
-
+		const std::vector<Value*>& getPrev() const { return _prev; }
+		
 	private:
 		std::function<void()> _backward;
 		std::vector<Value*> _prev; // vector of the nodes that created this node
