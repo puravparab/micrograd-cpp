@@ -3,7 +3,7 @@
 mkdir -p build
 
 # compile src
-g++ -std=c++14 -o build/micrograd main.cpp engine.cpp nn.cpp
+g++ -std=c++14 -o build/micrograd src/main.cpp src/engine.cpp src/nn.cpp
 
 # Check if compilation was successful
 if [ $? -ne 0 ]; then

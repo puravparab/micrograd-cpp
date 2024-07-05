@@ -3,7 +3,7 @@
 mkdir -p build
 
 # Compile the tests
-g++ -std=c++14 -Ilib/googletest/googletest/include test/test_main.cpp engine.cpp lib/libgtest.a -lpthread -o build/run_tests
+g++ -std=c++14 -Ilib/googletest/googletest/include test/test_main.cpp src/engine.cpp lib/libgtest.a -lpthread -o build/run_tests
 
 # Check if compilation was successful
 if [ $? -ne 0 ]; then
