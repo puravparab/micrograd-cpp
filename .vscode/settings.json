@@ -49,6 +49,17 @@
 		"algorithm": "cpp",
 		"__tree": "cpp",
 		"set": "cpp",
-		"iomanip": "cpp"
+		"iomanip": "cpp",
+		"any": "cpp",
+		"charconv": "cpp",
+		"condition_variable": "cpp",
+		"csignal": "cpp",
+		"deque": "cpp",
+		"forward_list": "cpp",
+		"fstream": "cpp",
+		"list": "cpp",
+		"map": "cpp",
+		"span": "cpp",
+		"unordered_set": "cpp"
 	}
 }

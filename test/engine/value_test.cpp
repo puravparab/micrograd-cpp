@@ -32,20 +32,23 @@ TEST(ValueConstructorTest, FloatAndPreviousValuesConstructor) {
 	Value* prev3 = new Value(0.5f);
 
 	// Test with empty previous values
-	Value v1(1.0f, {});
+	std::vector<Value*> parents = {};
+	Value v1(1.0f, parents);
 	EXPECT_FLOAT_EQ(v1.data, 1.0f);
 	EXPECT_FLOAT_EQ(v1.grad, 0.0f);
 	EXPECT_TRUE(v1.getPrev().empty());
 
 	// Test with one previous value
-	Value v2(3.0f, {prev1});
+	parents = {prev1};
+	Value v2(3.0f, parents);
 	EXPECT_FLOAT_EQ(v2.data, 3.0f);
 	EXPECT_FLOAT_EQ(v2.grad, 0.0f);
 	ASSERT_EQ(v2.getPrev().size(), 1);
 	EXPECT_EQ(v2.getPrev()[0], prev1);
 
 	// Test with multiple previous values
-	Value v3(4.0f, {prev1, prev2, prev3});
+	parents = {prev1, prev2, prev3};
+	Value v3(4.0f, parents);
 	EXPECT_FLOAT_EQ(v3.data, 4.0f);
 	EXPECT_FLOAT_EQ(v3.grad, 0.0f);
 	ASSERT_EQ(v3.getPrev().size(), 3);

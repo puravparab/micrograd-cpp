@@ -1,9 +1,13 @@
 #include <gtest/gtest.h>
 
-// Include test files from engine/
+// test files from engine/
 #include "engine/value_test.cpp"
+#include "engine/value_addition_test.cpp"
+#include "engine/value_multiplication_test.cpp"
+#include "engine/value_activations_test.cpp"
+#include "engine/value_gradients_test.cpp"
 
-// Include test files from nn/
+// test files from nn/
 
 
 int main(int argc, char **argv) {

@@ -12,18 +12,18 @@ class Value {
 
 		// Constructor
 		Value (float data);
-		Value (float data, const std::vector<Value*>& _prev);
+		Value (float data, std::vector<Value*>& _prev);
 		
 		// Addition
-		Value operator+ (const Value& rhs); // Value + Value
-		Value operator+ (const float rhs); // Value + float
+		Value operator+ (Value& rhs); // Value + Value
+		Value operator+ (float& rhs); // Value + float
 
 		// Multiplication
-		Value operator* (const Value& rhs); // Value * float
-		Value operator* (const float rhs); // Value * float
+		Value operator* (Value& rhs); // Value * float
+		Value operator* (float rhs); // Value * float
 
 		// Exponentiation
-		Value pow(const Value& other); // x ^ n
+		Value pow(Value& other); // x ^ n
 		Value exp(); // e ^ x
 
 		// Activation functions
@@ -42,8 +42,8 @@ class Value {
 
 // Addition
 // float + Value
-Value operator+ (const float lhs, Value& rhs);
+Value operator+ (const float& lhs, Value& rhs);
 
 // Multiplication
 // float * Value
-Value operator* (const float lhs, Value& rhs);
+Value operator* (const float& lhs, Value& rhs);
