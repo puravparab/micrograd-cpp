@@ -8,7 +8,7 @@
 #include "engine/value_gradients_test.cpp"
 
 // test files from nn/
-
+#include "nn/nn_test.cpp"
 
 int main(int argc, char **argv) {
 	testing::InitGoogleTest(&argc, argv); // Initialize Google Test
