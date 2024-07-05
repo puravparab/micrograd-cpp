@@ -77,7 +77,7 @@ Value Value::operator* (Value& rhs){
 	Value out = Value(data * rhs.data, parents);
 	out._backward = [this, &rhs, &out]{
 		this->grad += rhs.data * out.grad;
-		const_cast<Value&>(rhs).grad += this->data * out.grad;
+		rhs.grad += this->data * out.grad;
 	};
 	return out;
 };
@@ -87,8 +87,8 @@ Value Value::operator* (const float rhs){
 	std::vector<Value*> parents = {this, rhs_ptr};
 	Value out = Value(data * rhs_ptr->data, parents);
 	out._backward = [this, rhs_ptr, &out]{
-		this->grad += out.grad;
-		rhs_ptr->grad += out.grad;
+		this->grad += rhs_ptr->data * out.grad;
+		rhs_ptr->grad += this->data * out.grad;
 	};
 	return out;
 };
