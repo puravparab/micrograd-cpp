@@ -22,10 +22,10 @@ std::vector<Value*> Module::parameters () {
 /*
 	Neuron
 */
-Neuron::Neuron (int nin) : Neuron(nin, "relu"){};
-Neuron::Neuron (int nin, std::string activation) : activation(activation) {
+Neuron::Neuron (int nin) : Neuron(nin, "relu", 12345){};
+Neuron::Neuron (int nin, std::string activation) : Neuron(nin, activation, 12345){};
+Neuron::Neuron (int nin, std::string activation, unsigned seed) : activation(activation){
 	// Assign random values for weights initially
-	unsigned seed = 12345;
 	std::default_random_engine gen(seed);
 	std::uniform_real_distribution<float> distribution(-1.0, 1.0);
 	w.reserve(nin);
@@ -66,6 +66,7 @@ std::vector<Value*> Neuron::parameters () {
 /*
 	Layer
 */
+Layer::Layer (int nin, int out) : Layer(nin, out, "relu"){}
 Layer::Layer (int nin, int out, const std::string& activation){
 	for (int i = 0; i < out; i++){
 		Neuron* n = new Neuron(nin, activation);
@@ -94,6 +95,7 @@ std::vector<Value*> Layer::parameters() {
 /*
 	MLP
 */
+MLP::MLP (int nin, const std::vector<int>& nouts) : MLP(nin, nouts, "relu"){}
 MLP::MLP (int nin, const std::vector<int>& nouts, const std::string& activation){
 	std::vector<int> sz = {nin};
 	sz.insert(sz.end(), nouts.begin(), nouts.end());

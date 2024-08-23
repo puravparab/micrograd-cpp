@@ -8,8 +8,11 @@
 // Test Neuron constructor
 TEST(NNConstructorTest, NeuronConstructor) {
 	Neuron n1(10);
-	std::vector<Value*> params = n1.parameters();
-	EXPECT_EQ(params.size(), 11);
+	Neuron n2(4, "tanh");
+	Neuron n3(7, "sigmoid", 12345);
+	EXPECT_EQ(n1.parameters().size(), 11);
+	EXPECT_EQ(n2.parameters().size(), 5);
+	EXPECT_EQ(n3.parameters().size(), 8);
 }
 
 /*
@@ -18,8 +21,7 @@ TEST(NNConstructorTest, NeuronConstructor) {
 // Test Layer constructor
 TEST(NNConstructorTest, LayerConstructor) {
 	Layer l1(10, 2, "relu");
-	std::vector<Value*> params = l1.parameters();
-	EXPECT_EQ(params.size(), 22);
+	EXPECT_EQ(l1.parameters().size(), 22);
 }
 
 /*
@@ -28,6 +30,5 @@ TEST(NNConstructorTest, LayerConstructor) {
 // Test MLP constructor
 TEST(NNConstructorTest, MLPConstructor) {
 	MLP mlp(10, {2, 1}, "relu");
-	std::vector<Value*> params = mlp.parameters();
-	EXPECT_EQ(params.size(), 25);
+	EXPECT_EQ(mlp.parameters().size(), 25);
 }

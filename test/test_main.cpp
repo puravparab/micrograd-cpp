@@ -9,6 +9,7 @@
 
 // test files from nn/
 #include "nn/nn_test.cpp"
+#include "nn/nn_forwardprop.cpp"
 
 int main(int argc, char **argv) {
 	testing::InitGoogleTest(&argc, argv); // Initialize Google Test

@@ -60,7 +60,7 @@ int main() {
 	// std::cout << out.data << ", " << out.grad << std::endl;
 
 	// Neuron n(3, "relu");
-	// // gradient descent
+	// // // gradient descent
 	// for (size_t i = 0; i < 20; i++){
 	// 	// forward pass
 	// 	std::vector<Value> ypred;
@@ -75,8 +75,8 @@ int main() {
 	// 	// Compute loss (squared error)
 	// 	Value loss(0.0f);
 	// 	for (size_t i = 0; i < Y.size(); i++) {
-	// 		Value diff = ypred[i] + Value(-1.0f * Y[i]);
-	// 		loss = loss + (diff * diff);
+	// 		Value diff = Value(-1.0f * Y[i]) +  ypred[i];
+	// 		loss = (diff * diff) + loss;
 	// 	}
 
 	// 	// Backward pass
