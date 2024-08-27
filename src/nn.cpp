@@ -1,6 +1,7 @@
 #include <random>
 #include "nn.h"
 
+
 /*
 	Module
 */
@@ -18,6 +19,7 @@ void Module::zero_grad (){
 std::vector<Value*> Module::parameters () {
 	return std::vector<Value*> {};
 }
+
 
 /*
 	Neuron
@@ -53,7 +55,6 @@ Value Neuron::operator() (std::vector<Value>& X) const {
 	if (activation == "tanh") { return act.tanh();} // tanh
 	if (activation == "sigmoid") { return act.sigmoid();}
 	else {return act;} // linear
-
 }
 
 std::vector<Value*> Neuron::parameters () {
@@ -91,6 +92,7 @@ std::vector<Value*> Layer::parameters() {
 	}
 	return params;
 }
+
 
 /*
 	MLP
